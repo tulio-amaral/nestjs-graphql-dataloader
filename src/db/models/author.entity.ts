@@ -6,19 +6,26 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { ObjectType, Field } from 'type-graphql';
+
 import Book from './book.entity';
 
-@Entity()
+@ObjectType()
+@Entity({ name: 'authors' })
 export default class Author {
+  @Field()
   @PrimaryGeneratedColumn()
   id: number;
 
+  @Field()
   @Column()
   name: string;
 
+  @Field()
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
 
+  @Field()
   @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
 
